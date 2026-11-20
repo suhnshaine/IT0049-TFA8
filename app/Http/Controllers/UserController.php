@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class UserController extends Controller
 {
@@ -31,7 +32,6 @@ class UserController extends Controller
         User::create([
             'username' => $request->username,
             'full_name' => $request->full_name,
-            'role' => $request->role
         ]);
 
         return redirect('/users');
@@ -62,21 +62,25 @@ class UserController extends Controller
 
             $filename = time() . '.' .
                 $file->getClientOriginalExtension();
-            $image = Image::read($file)
+            $manager = new ImageManager(
+                new Driver()
+            );
+
+            $image = $manager
+                ->read($file->getRealPath())
                 ->cover(150, 150);
 
-            Storage::disk('public')
-                ->put(
-                    'avatars/' . $filename,
-                    (string) $image->encode()
-                );
+
+            Storage::disk('public')->put(
+                'avatars/' . $filename,
+                (string) $image->toJpeg()
+            );
 
             $avatarPath = 'avatars/' . $filename;
         }
         $user->update([
             'username' => $request->username,
             'full_name' => $request->full_name,
-            'role' => $request->role,
             'avatar' => $avatarPath
         ]);
 

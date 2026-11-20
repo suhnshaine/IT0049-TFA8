@@ -13,14 +13,14 @@
         <h1>POS System</h1>
 
         <nav>
-            <a href="/">Home</a> |
-            <a href="/about">About</a> |
-            <a href="/customers">Customers</a> |
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/customers">Customers</a>
             <a href="/users">Users</a>
         </nav>
 
         <h1>Welcome</h1>
-        <p>Welcome to the Laravel POS System Version 1.</p>
+        <p>Welcome to the Laravel POS System Version 3.</p>
 
     </div>
 </body>
