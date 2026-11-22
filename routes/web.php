@@ -1,27 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\UserController;
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/about', [PageController::class, 'about']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/customers', [CustomerController::class, 'index']);
-
-Route::get('/users', [UserController::class, 'index']);
-
-Route::get('/customers/create', [CustomerController::class, 'create']);
-Route::post('/customers/store', [CustomerController::class, 'store']);
-
-Route::get('/customers/edit/{id}', [CustomerController::class, 'edit']);
-Route::put('/customers/update/{id}', [CustomerController::class, 'update']);
-
-Route::get('/users/create', [UserController::class, 'create']);
-Route::post('/users/store', [UserController::class, 'store']);
-
-Route::get('/users/edit/{id}', [UserController::class, 'edit']);
-Route::put('/users/update/{id}', [UserController::class, 'update']);
+require __DIR__.'/auth.php';
