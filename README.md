@@ -3,13 +3,13 @@
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/suhnshaine/IT0049-TFA7.git
+git clone https://github.com/suhnshaine/IT0049-TFA8.git
 ```
 
 ### Navigate to the Project Folder
 
 ```bash
-cd IT0049-TFA7
+cd IT0049-TFA8
 ```
 
 ### Install Dependencies
@@ -32,9 +32,11 @@ Open:
 http://127.0.0.1:8000/
 ```
 
-## Live Demo
-
-http://it0049-tfa6.infinityfree.me/
+## Loggin In
+```text
+email: admin@example.com
+password: password123
+```
 
 ## Author
 
