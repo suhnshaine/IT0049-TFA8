@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -26,37 +26,28 @@ class CustomerController extends Controller
             'email' => 'required|email'
         ]);
 
-        Customer::create([
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'phone' => $request->phone
-        ]);
+        Customer::create($request->all());
 
-        return redirect('/customers');
+        return redirect()->route('customers');
     }
 
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-
-        return view('customers.edit', compact('customer'));
+        return view(
+            'customers.edit',
+            compact('customer')
+        );
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
         $request->validate([
             'full_name' => 'required',
             'email' => 'required|email'
         ]);
 
-        $customer = Customer::findOrFail($id);
+        $customer->update($request->all());
 
-        $customer->update([
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'phone' => $request->phone
-        ]);
-
-        return redirect('/customers');
+        return redirect()->route('customers');
     }
 }

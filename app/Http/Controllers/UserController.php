@@ -37,22 +37,18 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
-
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'username' => 'required',
             'full_name' => 'required',
             'avatar' => 'nullable|image|max:2048'
         ]);
-
-        $user = User::findOrFail($id);
 
         $avatarPath = $user->avatar;
 
