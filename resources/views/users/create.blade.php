@@ -28,8 +28,10 @@
 
         <?php endif; ?>
         <form method="POST"
-            action="/users/store">
+            action="{{ route('users.update',$user) }}"
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
             <div class="form-group">
                 <label>Username</label>

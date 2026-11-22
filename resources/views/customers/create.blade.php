@@ -27,7 +27,7 @@
             </div>
 
         <?php endif; ?>
-        <form method="POST" action="/customers/store">
+        <form method="POST" action="{{ route('customers.store') }}">
             @csrf
 
             <div class="form-group">

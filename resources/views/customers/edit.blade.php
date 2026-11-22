@@ -28,7 +28,7 @@
 
         <?php endif; ?>
         <form method="POST"
-            action="/customers/update/{{ $customer->id }}">
+            action="{{ route('customers.update',$customer) }}">
             @csrf
             @method('PUT')
 
