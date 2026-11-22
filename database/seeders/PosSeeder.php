@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PosSeeder extends Seeder
 {
@@ -41,22 +42,32 @@ class PosSeeder extends Seeder
             [
                 'username' => 'admin',
                 'full_name' => 'System Administrator',
+                'email' => 'admin@example.com',
+                'password' => Hash::make('password123')
             ],
             [
                 'username' => 'msantos',
                 'full_name' => 'Maria Santos',
+                'email' => 'msantos@example.com',
+                'password' => Hash::make('password123')
             ],
             [
                 'username' => 'jcruz',
                 'full_name' => 'Juan Cruz',
+                'email' => 'jcruz@example.com',
+                'password' => Hash::make('password123')
             ],
             [
                 'username' => 'areyes',
                 'full_name' => 'Ana Reyes',
+                'email' => 'areyes@example.com',
+                'password' => Hash::make('password123')
             ],
             [
                 'username' => 'mlopez',
                 'full_name' => 'Mark Lopez',
+                'email' => 'mlopez@example.com',
+                'password' => Hash::make('password123')
             ]
         ]);
     }
